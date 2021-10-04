@@ -1,0 +1,74 @@
+{
+  "user": [
+    {
+      "id": 1,
+      "name": "Nikola",
+      "email": "nmowlam0@wiley.com",
+      "phone": "2462184730",
+      "address": "Indonesia"
+    },
+    {
+      "id": 2,
+      "name": "Kakalina",
+      "email": "kjefferson1@unblog.fr",
+      "phone": "7422375823",
+      "address": "Sweden"
+    },
+    {
+      "id": 3,
+      "name": "Raoul",
+      "email": "rjanjusevic2@google.com.hk",
+      "phone": "3545397873",
+      "address": "Canada"
+    },
+    {
+      "id": 4,
+      "name": "Sher",
+      "email": "semberton3@sciencedirect.com",
+      "phone": "4159357319",
+      "address": "China"
+    },
+    {
+      "id": 5,
+      "name": "Eleni",
+      "email": "eleving4@google.de",
+      "phone": "8903707334",
+      "address": "France"
+    },
+    {
+      "id": 6,
+      "name": "Gweneth",
+      "email": "gsvanini5@google.nl",
+      "phone": "5081516614",
+      "address": "China"
+    },
+    {
+      "id": 7,
+      "name": "Cordell",
+      "email": "cohanessian6@indiegogo.com",
+      "phone": "4188754704",
+      "address": "Indonesia"
+    },
+    {
+      "id": 8,
+      "name": "Kenny",
+      "email": "kdowgill7@oaic.gov.au",
+      "phone": "4819268104",
+      "address": "Finland"
+    },
+    {
+      "id": 9,
+      "name": "Sallee",
+      "email": "sfrigout8@uol.com.br",
+      "phone": "1902040723",
+      "address": "East Timor"
+    },
+    {
+      "id": 10,
+      "name": "Borg",
+      "email": "btramel9@edublogs.org",
+      "phone": "3661725134",
+      "address": "Palestinian Territory"
+    }
+  ]
+}
