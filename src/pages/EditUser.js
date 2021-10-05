@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addUser } from '../redux/actions';
 
-export const AddUser = () => {
+export const EditUser = () => {
   const history = useHistory();
   const [user, setUser] = useState({
     name: '',
@@ -38,7 +38,7 @@ export const AddUser = () => {
 
   return (
     <div>
-      <h2>Add User</h2>
+      <h2>Edit User</h2>
       <Button
         style={{ marginBottom: 15 }}
         variant='contained'
@@ -102,7 +102,7 @@ export const AddUser = () => {
           type='sumbit'
           style={{ width: 100 }}
         >
-          Submit
+          Update
         </Button>
       </Box>
       {error && <p style={{ color: '#ff0000' }}>{error}</p>}

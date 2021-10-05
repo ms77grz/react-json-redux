@@ -13,6 +13,20 @@
       "email": "gsvanini5@google.nl",
       "phone": "5081516614",
       "address": "China"
+    },
+    {
+      "name": "Magomed Shamaev",
+      "email": "m.shamaev@vainahtelecom.ru",
+      "phone": "89958001400",
+      "address": "Grozny",
+      "id": 7
+    },
+    {
+      "name": "Max",
+      "email": "max@ya.ru",
+      "phone": "123",
+      "address": "asdf",
+      "id": 8
     }
   ]
 }

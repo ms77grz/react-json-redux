@@ -86,7 +86,11 @@ export default function CustomizedTables() {
                       variant='contained'
                       aria-label='outlined primary button group'
                     >
-                      <Button style={{ marginRight: 2 }} color='primary'>
+                      <Button
+                        style={{ marginRight: 2 }}
+                        color='primary'
+                        onClick={() => history.push(`/editUser/${user.id}`)}
+                      >
                         Edit
                       </Button>
                       <Button
