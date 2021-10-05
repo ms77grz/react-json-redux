@@ -1,12 +1,14 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import { useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { addUser } from '../redux/actions';
+import { useHistory, useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { addUser, getSingleUser } from '../redux/actions';
 
 export const EditUser = () => {
+  const { id } = useParams();
+  const { user: currentUser } = useSelector(state => state.users);
   const history = useHistory();
   const [user, setUser] = useState({
     name: '',
@@ -19,6 +21,16 @@ export const EditUser = () => {
   const [error, setError] = useState('');
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getSingleUser(id));
+  }, [dispatch, id]);
+
+  useEffect(() => {
+    if (currentUser) {
+      setUser({ ...currentUser });
+    }
+  }, [currentUser]);
 
   const handleInputChange = e => {
     setError('');
@@ -61,7 +73,7 @@ export const EditUser = () => {
           name='name'
           label='Name'
           variant='standard'
-          value={name}
+          value={name || ''}
           onChange={handleInputChange}
           type='text'
         />
@@ -71,7 +83,7 @@ export const EditUser = () => {
           name='email'
           label='Email'
           variant='standard'
-          value={email}
+          value={email || ''}
           onChange={handleInputChange}
           type='email'
         />
@@ -81,7 +93,7 @@ export const EditUser = () => {
           name='phone'
           label='Phone'
           variant='standard'
-          value={phone}
+          value={phone || ''}
           onChange={handleInputChange}
           type='tel'
         />
@@ -91,7 +103,7 @@ export const EditUser = () => {
           name='address'
           label='Address'
           variant='standard'
-          value={address}
+          value={address || ''}
           onChange={handleInputChange}
           type='text'
         />
