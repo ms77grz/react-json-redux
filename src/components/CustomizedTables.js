@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -7,6 +6,12 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { loadUsers, deleteUser } from '../redux/actions';
+import Button from '@mui/material/Button';
+import ButtonGroup from '@mui/material/ButtonGroup';
+import { useHistory } from 'react-router-dom';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -28,45 +33,75 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
-}
-
-const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-];
-
 export default function CustomizedTables() {
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const { users } = useSelector(state => state.users);
+
+  useEffect(() => {
+    dispatch(loadUsers());
+  }, [dispatch]);
+
+  const handleDelete = id => {
+    if (window.confirm('Are you sure?')) {
+      dispatch(deleteUser(id));
+    }
+  };
+
   return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 700 }} aria-label='customized table'>
-        <TableHead>
-          <TableRow>
-            <StyledTableCell>Name</StyledTableCell>
-            <StyledTableCell align='center'>Email</StyledTableCell>
-            <StyledTableCell align='center'>Phone</StyledTableCell>
-            <StyledTableCell align='center'>Address</StyledTableCell>
-            <StyledTableCell align='center'>Action</StyledTableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map(row => (
-            <StyledTableRow key={row.name}>
-              <StyledTableCell component='th' scope='row'>
-                {row.name}
-              </StyledTableCell>
-              <StyledTableCell align='center'>{row.calories}</StyledTableCell>
-              <StyledTableCell align='center'>{row.fat}</StyledTableCell>
-              <StyledTableCell align='center'>{row.carbs}</StyledTableCell>
-              <StyledTableCell align='center'>{row.protein}</StyledTableCell>
-            </StyledTableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+    <>
+      <Button
+        style={{ marginBottom: 15 }}
+        variant='contained'
+        color='primary'
+        onClick={() => history.push('/addUser')}
+      >
+        Add User
+      </Button>
+      <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 700 }} aria-label='customized table'>
+          <TableHead>
+            <TableRow>
+              <StyledTableCell>Name</StyledTableCell>
+              <StyledTableCell align='center'>Email</StyledTableCell>
+              <StyledTableCell align='center'>Phone</StyledTableCell>
+              <StyledTableCell align='center'>Address</StyledTableCell>
+              <StyledTableCell align='center'>Action</StyledTableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {users &&
+              users.map(user => (
+                <StyledTableRow key={user.id}>
+                  <StyledTableCell component='th' scope='row'>
+                    {user.name}
+                  </StyledTableCell>
+                  <StyledTableCell align='center'>{user.email}</StyledTableCell>
+                  <StyledTableCell align='center'>{user.phone}</StyledTableCell>
+                  <StyledTableCell align='center'>
+                    {user.address}
+                  </StyledTableCell>
+                  <StyledTableCell align='center'>
+                    <ButtonGroup
+                      variant='contained'
+                      aria-label='outlined primary button group'
+                    >
+                      <Button style={{ marginRight: 2 }} color='primary'>
+                        Edit
+                      </Button>
+                      <Button
+                        color='secondary'
+                        onClick={() => handleDelete(user.id)}
+                      >
+                        Delete
+                      </Button>
+                    </ButtonGroup>
+                  </StyledTableCell>
+                </StyledTableRow>
+              ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </>
   );
 }
