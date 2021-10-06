@@ -4,7 +4,7 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { addUser, getSingleUser } from '../redux/actions';
+import { getSingleUser, updateUser } from '../redux/actions';
 
 export const EditUser = () => {
   const { id } = useParams();
@@ -42,7 +42,7 @@ export const EditUser = () => {
     if (!name || !email || !phone || !address) {
       setError('Please, fill all the fields!');
     } else {
-      dispatch(addUser(user));
+      dispatch(updateUser(user, id));
       history.push('/');
       setError('');
     }
